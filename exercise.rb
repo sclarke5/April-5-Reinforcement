@@ -11,9 +11,28 @@ hash = { data: { rooms:
 }
 
 
-array = hash[:data][:rooms]
-capacity = array.each do |v|
-  if v[:room_number] == "201"
-    return p v[:capacity]
+room_array = hash[:data][:rooms]
+
+def capacity(array)
+  array.each do |v|
+    if v[:room_number] == "201"
+      return v[:capacity]
+    end
   end
 end
+
+p capacity(room_array)
+
+events_array = hash[:data][:events]
+
+def attendees(room_array, events_array)
+  events_array.each do |v|
+  if v[:room_id] == 1 && v[:attendees] <= capacity(room_array)
+    return 'ok'
+  # else
+  #   p "wrong"
+  end
+end
+end
+
+p attendees(room_array, events_array)
